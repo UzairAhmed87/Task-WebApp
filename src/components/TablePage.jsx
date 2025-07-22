@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import  { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
 import * as ExcelJS from 'exceljs';
@@ -6,13 +6,12 @@ import { saveAs } from 'file-saver';
 
 function TablePage() {
   const { items } = useSelector((state) => state.data);
-  console.log(items);
 
   const columns = useMemo(
     () => [
       { Header: 'Name', accessor: 'name' },
       { Header: 'Date', accessor: 'date' },
-      { Header: 'Avg', accessor: 'avg' },
+      { Header: 'Average', accessor: 'avg' },
       { Header: 'Total', accessor: 'total' },
     ],
     []
@@ -41,10 +40,8 @@ function TablePage() {
       total: Number(item.total),
     }));
 
-    // Add rows to worksheet
     worksheet.addRows(dataToExport);
 
-    // Style header row
     worksheet.getRow(1).font = { bold: true };
     worksheet.getRow(1).fill = {
       type: 'pattern',
@@ -62,7 +59,7 @@ function TablePage() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <h1 className="text-xl sm:text-2xl font-bold mb-4">Table Page</h1>
+      <h1 className="text-xl text-center sm:text-2xl font-bold mb-4">Table Page</h1>
       <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md w-full max-w-full overflow-x-auto">
         <table {...getTableProps()} className="w-full border-collapse text-sm sm:text-base">
           <thead>
@@ -99,7 +96,7 @@ function TablePage() {
         </table>
         <button
           onClick={handleDownload}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors w-full sm:w-auto"
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors w-full sm:w-auto"
         >
           Download Excel
         </button>

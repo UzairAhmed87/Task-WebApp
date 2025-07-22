@@ -16,12 +16,10 @@ function TablePage() {
     ],
     []
   );
-
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data: items,
   });
-
   const handleDownload = async () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Data');
@@ -32,7 +30,6 @@ function TablePage() {
       { header: 'Avg', key: 'avg', width: 15 },
       { header: 'Total', key: 'total', width: 15 },
     ];
-
     const dataToExport = items.map(item => ({
       name: String(item.name),
       date: String(item.date),
@@ -41,14 +38,12 @@ function TablePage() {
     }));
 
     worksheet.addRows(dataToExport);
-
     worksheet.getRow(1).font = { bold: true };
     worksheet.getRow(1).fill = {
       type: 'pattern',
       pattern: 'solid',
       fgColor: { argb: 'FF4CAF50' }, // Green background
     };
-
     // Generate and download file
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], {

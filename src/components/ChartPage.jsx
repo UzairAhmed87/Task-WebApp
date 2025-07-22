@@ -32,7 +32,6 @@ function ChartPage() {
         setChartDimensions({ width, height });
       }
     };
-
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
@@ -98,7 +97,6 @@ function ChartPage() {
             <Tooltip />
           <Legend height={15} />
         </LineChart>
-        
         <button
           onClick={handleOpenTable}
           className=" bg-blue-500 flex justify-center text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors w-full sm:w-auto"
